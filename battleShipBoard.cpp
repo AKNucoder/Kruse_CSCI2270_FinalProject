@@ -17,14 +17,30 @@ void BattleShipBoard::assembleBoard(){
 	BattleShipNode* createNodeRow = root;
 	//Create columns of nodes
 	BattleShipNode* createNodeCol= root;
+	BattleShipNode* previous = new BattleShipNode;
+
+	BattleShip *testShip = new BattleShip(5,5);
+
 	for (int i=0; i<10;i++){
 		for (int j=0; j<10; j++){
 			createNodeRow->next = new BattleShipNode;
+			previous = createNodeRow;
 			createNodeRow = createNodeRow->next;
+			createNodeRow->previous = previous;
+
+			// /*
+			if (i==3 && (j==2 || j==3 || j==4 || j==5 || j==6)){
+				createNodeRow->hitBattleShip = true;
+				//createNodeRow->battleShip = testShip;
+				createNodeRow->battleShip = testShip;
+			}
+			 // */
 		}
 		createNodeCol->child = new BattleShipNode();
+		previous = createNodeCol;
 		createNodeCol = createNodeCol->child;
 		createNodeRow = createNodeCol;
+		createNodeRow->previous = previous;
 	}
 }
 
@@ -57,11 +73,16 @@ void BattleShipBoard::printBoard(){
 
 void BattleShipBoard::printRow(BattleShipNode* _searchNodeRow){
 	for (int j=0; j<10; j++){
-		if (!_searchNodeRow->struck && !_searchNodeRow->hit){
+		if (!_searchNodeRow->hitBattleShip && !_searchNodeRow->hitNoDamage){
 			cout << setw(6) << "|";
 		}
-		else if (!_searchNodeRow->hit){
-			cout << setw(4) << ":)" << setw(2) << "|";
+		else if (_searchNodeRow->hitBattleShip){
+			if (_searchNodeRow->battleShip->hit == _searchNodeRow->battleShip->size){
+				printHorizontalBattleShip(_searchNodeRow);
+			}
+			else{
+				cout << setw(4) << ":)" << setw(2) << "|";
+			}
 		}
 		else{
 			cout << setw(4) << "X" << setw(2) << "|";
@@ -69,6 +90,38 @@ void BattleShipBoard::printRow(BattleShipNode* _searchNodeRow){
 		_searchNodeRow = _searchNodeRow->next;
 	}
 
+}
+
+//Prints part of a battleship if it is horizontal
+void BattleShipBoard::printHorizontalBattleShip(BattleShipNode* _searchNodeRow){
+	//If end of battleship
+	if (_searchNodeRow->previous!=NULL && _searchNodeRow->previous->battleShip == _searchNodeRow->battleShip && (_searchNodeRow->next!=NULL && _searchNodeRow->next->battleShip != _searchNodeRow->battleShip)){
+					cout << setw(4) << "=[ ]>" << setw(1) << "|";
+	}
+	//Else if head of  battleship
+	else if (_searchNodeRow->previous!=NULL && _searchNodeRow->previous->battleShip != _searchNodeRow->battleShip && (_searchNodeRow->next!=NULL && _searchNodeRow->next->battleShip == _searchNodeRow->battleShip)){
+		cout << setw(4) << "<[ ]" << setw(1) << "==";
+	}
+	//Else if a middle piece of battleship.
+	else if (_searchNodeRow->next!=NULL && _searchNodeRow->next->battleShip == _searchNodeRow->battleShip){
+		cout << setw(4) << "=[ ]" << setw(2) << "==";
+	}
+}
+
+//Prints part of a battleship if it is horizontal
+void BattleShipBoard::printVerticalBattleShip(BattleShipNode* _searchNodeRow){
+	//If end of battleship
+	if (_searchNodeRow->previous!=NULL && _searchNodeRow->previous->battleShip == _searchNodeRow->battleShip && (_searchNodeRow->next!=NULL && _searchNodeRow->next->battleShip != _searchNodeRow->battleShip)){
+					cout << setw(4) << "=[ ]>" << setw(1) << "|";
+	}
+	//Else if head of  battleship
+	else if (_searchNodeRow->previous!=NULL && _searchNodeRow->previous->battleShip != _searchNodeRow->battleShip && (_searchNodeRow->next!=NULL && _searchNodeRow->next->battleShip == _searchNodeRow->battleShip)){
+		cout << setw(4) << "<[ ]" << setw(1) << "==";
+	}
+	//Else if a middle piece of battleship.
+	else if (_searchNodeRow->next!=NULL && _searchNodeRow->next->battleShip == _searchNodeRow->battleShip){
+		cout << setw(4) << "=[ ]" << setw(2) << "==";
+	}
 }
 
 //Print borders between rows

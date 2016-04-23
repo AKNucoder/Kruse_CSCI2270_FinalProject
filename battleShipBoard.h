@@ -8,10 +8,14 @@ struct BattleShip{
 	int size; //size of battleship
 	int hit;  //Amount of battleship that has been hit.
 
-	//Initialize properties to 0
+	//Initialize properties
 	BattleShip(){
-		size = 0;
+		size = -1;
 		hit = 0;
+	};
+	BattleShip(int _size, int _hit){
+		size = _size;
+		hit = _hit;
 	};
 };
 
@@ -19,16 +23,18 @@ struct BattleShip{
 struct BattleShipNode{
 	BattleShipNode *next;  //rows
 	BattleShipNode *child; //column
-	bool struck;
-	bool hit;
+	BattleShipNode *previous; //column
+	bool hitNoDamage;
+	bool hitBattleShip;
 	BattleShip *battleShip;
 
 	//Initialize properties to null and false
 	BattleShipNode(){
 		next = nullptr;
 		child = nullptr;
-		struck = false;
-		hit = false;
+		previous = nullptr;
+		hitNoDamage = false;
+		hitBattleShip = false;
 		battleShip = nullptr;
 	};
 };
@@ -51,5 +57,7 @@ class BattleShipBoard{
 		void printRow(BattleShipNode* searchNodeRow);
 		void printRowBorder();
 		BattleShipNode* searchCoordinate(int row, int column);
+		void printHorizontalBattleShip(BattleShipNode* _searchNodeRow);
+		void printVerticalBattleShip(BattleShipNode* _searchNodeRow);
 };
 #endif //BATTLESHIPBOARD_H
