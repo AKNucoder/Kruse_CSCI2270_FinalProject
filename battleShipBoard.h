@@ -2,6 +2,7 @@
 #define BATTLESHIPBOARD_H
 //For std namespace
 #include <functional>
+#include <string>
 
 //Actual battlships, used to record each individual battleship if it has been hit.
 struct BattleShip{
@@ -26,6 +27,7 @@ struct BattleShipNode{
 	BattleShipNode *previous; //column
 	bool hitNoDamage;
 	bool hitBattleShip;
+	std::string test;
 	BattleShip *battleShip;
 
 	//Initialize properties to null and false
@@ -36,6 +38,7 @@ struct BattleShipNode{
 		hitNoDamage = false;
 		hitBattleShip = false;
 		battleShip = nullptr;
+		test = ":p";
 	};
 };
 
@@ -55,9 +58,14 @@ class BattleShipBoard{
 	private:
 		BattleShipNode* root;
 		void printRow(BattleShipNode* searchNodeRow);
-		void printRowBorder();
+		void printRowBorder(BattleShipNode* _nodeAtBegginingOfRow,int row);
 		BattleShipNode* searchCoordinate(int row, int column);
 		void printHorizontalBattleShip(BattleShipNode* _searchNodeRow);
-		void printVerticalBattleShip(BattleShipNode* _searchNodeRow);
+		void printVerticalBattleShip(BattleShipNode* _searchNodeRow,int row, int column);
+		bool battleShipIsHorizontal(BattleShipNode* _searchNodeRow);
+		bool isHeadOfHorizBattleShip(BattleShipNode* _searchNodeRow);
+		bool isTailOfHorizBattleShip(BattleShipNode* _searchNodeRow);
+		bool isHeadOfVerticalBattleShip(BattleShipNode* _searchNodeRow, int row, int column);
+		bool isTailOfVerticalBattleShip(BattleShipNode* _searchNodeRow, int row, int column);
 };
 #endif //BATTLESHIPBOARD_H
