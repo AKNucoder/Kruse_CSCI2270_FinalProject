@@ -1,4 +1,4 @@
-#include "BattleShipBoard.h"
+#include "battleShipBoard.h"
 #include <iostream>
 #include <iomanip> //For printing format of board
 #include <ctime>
