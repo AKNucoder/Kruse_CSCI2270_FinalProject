@@ -1,3 +1,8 @@
+//Johnathan Kruse
+//CSCI 2270 Final Project
+//Instructor Hoenigman
+//Terminal Battleship
+//Driver File
 #include <iostream>
 #include <cstdlib>
 #include "battleShipBoard.h"

@@ -1,3 +1,8 @@
+//Johnathan Kruse
+//CSCI 2270 Final Project
+//Instructor Hoenigman
+//Terminal Battleship
+
 #include "battleShipBoard.h"
 #include <iostream>
 #include <iomanip> //For printing format of board

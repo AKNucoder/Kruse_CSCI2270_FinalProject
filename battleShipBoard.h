@@ -1,3 +1,7 @@
+//Johnathan Kruse
+//CSCI 2270 Final Project
+//Instructor Hoenigman
+//Terminal Battleship
 #ifndef BATTLESHIPBOARD_H
 #define BATTLESHIPBOARD_H
 //For std namespace
