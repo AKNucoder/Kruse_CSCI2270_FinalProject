@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "BattleShipBoard.h"
+#include "battleShipBoard.h"
 using namespace std;
 string retrieveName(string playerNumber);
 void setupPlayerBoard(string _player1, string _player2, BattleShipBoard &playerBoard);
