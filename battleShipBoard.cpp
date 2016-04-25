@@ -2,7 +2,6 @@
 #include <iostream>
 #include <iomanip> //For printing format of board
 #include <ctime>
-#include <sstream>
 
 using namespace std;
 int const ROW_SIZE =10;
