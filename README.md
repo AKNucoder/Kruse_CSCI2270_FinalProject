@@ -16,7 +16,7 @@ Dependencies:
 Runs on c++11. Incorporates basic c++ libraries, such as iostream, iomanip, ctime, funtional and the cstdlib.
 
 System Requirements:
-Program runs in a Terminal c++ compiler shell. Program works in Mac and Linux with the gcc compiler and can work in Windows once a c++ compiler in the Command Prompt is configured.
+Program runs in a Terminal c++11 compiler shell. Program works in Mac and Linux with the gcc compiler and can work in Windows once a c++11 compiler in the Command Prompt is configured.
 
 Group Members:
 Johnathan Kruse
