@@ -53,7 +53,7 @@ int main(){
 		playerTwoBoard.congratsOnWinning(playerTwo, playerOne);
 	}
 
-    cout << "CU you later!" << endl;    
+    cout << "CU later!" << endl;    
 }
 
 //Setsup locations of battleship for each player.
